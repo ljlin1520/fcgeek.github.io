@@ -1,0 +1,613 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="飛呈’Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Qiniu Resource Storage SDK for Node.js 下载从 npm 安装这是我们建议的方式 1$ npm install qiniu 从 release 版本下载下载地址：https://github.com/qiniu/nodejs-sdk/releases 这里可以下载到旧版本的SDK，release 版本有版本号，有 CHANGELOG，使用规格也会比较稳定。 从">
+<meta property="og:type" content="website">
+<meta property="og:title" content="飛呈’Blog">
+<meta property="og:url" content="http://www.fcgeek.com/nodejs-sdk/README.html">
+<meta property="og:site_name" content="飛呈’Blog">
+<meta property="og:description" content="Qiniu Resource Storage SDK for Node.js 下载从 npm 安装这是我们建议的方式 1$ npm install qiniu 从 release 版本下载下载地址：https://github.com/qiniu/nodejs-sdk/releases 这里可以下载到旧版本的SDK，release 版本有版本号，有 CHANGELOG，使用规格也会比较稳定。 从">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.shields.io/badge/weibo-%40qiniutek-blue.svg">
+<meta property="og:image" content="https://img.shields.io/badge/license-MIT-brightgreen.svg">
+<meta property="og:image" content="https://travis-ci.org/qiniu/nodejs-sdk.v6.png?branch=master">
+<meta property="og:image" content="https://codeclimate.com/github/qiniu/nodejs-sdk.png">
+<meta property="og:image" content="https://img.shields.io/npm/v/qiniu.svg">
+<meta property="og:updated_time" content="2016-10-12T19:00:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="飛呈’Blog">
+<meta name="twitter:description" content="Qiniu Resource Storage SDK for Node.js 下载从 npm 安装这是我们建议的方式 1$ npm install qiniu 从 release 版本下载下载地址：https://github.com/qiniu/nodejs-sdk/releases 这里可以下载到旧版本的SDK，release 版本有版本号，有 CHANGELOG，使用规格也会比较稳定。 从">
+<meta name="twitter:image" content="http://img.shields.io/badge/weibo-%40qiniutek-blue.svg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.fcgeek.com/nodejs-sdk/README.html"/>
+
+
+
+
+
+  <title>
+  
+
+  
+     | 飛呈’Blog
+  
+</title>
+  <script type="text/javascript">
+    var host = "fcgeek.com";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+  </script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">飛呈’Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+  <header class="post-header">
+
+	<h2 class="post-title" itemprop="name headline"></h2>
+
+
+
+</header>
+
+    
+    
+      <h1 id="Qiniu-Resource-Storage-SDK-for-Node-js"><a href="#Qiniu-Resource-Storage-SDK-for-Node-js" class="headerlink" title="Qiniu Resource Storage SDK for Node.js"></a>Qiniu Resource Storage SDK for Node.js</h1><p><a href="http://weibo.com/qiniutek" target="_blank" rel="noopener"><img src="http://img.shields.io/badge/weibo-%40qiniutek-blue.svg" alt="@qiniu on weibo"></a><br><a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="Software License"></a><br><a href="https://travis-ci.org/qiniu/nodejs-sdk.v6" target="_blank" rel="noopener"><img src="https://travis-ci.org/qiniu/nodejs-sdk.v6.png?branch=master" alt="Build Status"></a><br><a href="https://codeclimate.com/github/qiniu/nodejs-sdk" target="_blank" rel="noopener"><img src="https://codeclimate.com/github/qiniu/nodejs-sdk.png" alt="Code Climate"></a><br><a href="https://www.npmjs.com/package/qiniu" target="_blank" rel="noopener"><img src="https://img.shields.io/npm/v/qiniu.svg" alt="Latest Stable Version"></a></p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><h3 id="从-npm-安装"><a href="#从-npm-安装" class="headerlink" title="从 npm 安装"></a>从 npm 安装</h3><p>这是我们建议的方式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install qiniu</span><br></pre></td></tr></table></figure>
+<h3 id="从-release-版本下载"><a href="#从-release-版本下载" class="headerlink" title="从 release 版本下载"></a>从 release 版本下载</h3><p>下载地址：<a href="https://github.com/qiniu/nodejs-sdk/releases" target="_blank" rel="noopener">https://github.com/qiniu/nodejs-sdk/releases</a></p>
+<p>这里可以下载到旧版本的SDK，release 版本有版本号，有 <a href="https://github.com/qiniu/nodejs-sdk/blob/master/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG</a>，使用规格也会比较稳定。</p>
+<h3 id="从-git-库下载"><a href="#从-git-库下载" class="headerlink" title="从 git 库下载"></a>从 git 库下载</h3><p>你可以直接用 git clone 下载源代码来使用。但是请注意非 master 分支的代码可能会变更，应谨慎使用。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>参考文档：<a href="http://developer.qiniu.com/docs/v6/sdk/nodejs-sdk.html" target="_blank" rel="noopener">七牛云存储 Node.js SDK 使用指南</a></p>
+<h2 id="贡献代码"><a href="#贡献代码" class="headerlink" title="贡献代码"></a>贡献代码</h2><ol>
+<li>Fork</li>
+<li>创建您的特性分支 (<code>git checkout -b my-new-feature</code>)</li>
+<li>提交您的改动 (<code>git commit -am &#39;Added some feature&#39;</code>)</li>
+<li>将您的修改记录提交到远程 <code>git</code> 仓库 (<code>git push origin my-new-feature</code>)</li>
+<li>然后到 github 网站的该 <code>git</code> 远程仓库的 <code>my-new-feature</code> 分支下发起 Pull Request</li>
+</ol>
+<h2 id="许可证"><a href="#许可证" class="headerlink" title="许可证"></a>许可证</h2><p>Copyright (c) 2015 qiniu.com</p>
+<p>基于 MIT 协议发布:</p>
+<ul>
+<li><a href="http://www.opensource.org/licenses/MIT" target="_blank" rel="noopener">www.opensource.org/licenses/MIT</a></li>
+</ul>
+
+    
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/header.png"
+               alt="飛呈Jerry" />
+          <p class="site-author-name" itemprop="name">飛呈Jerry</p>
+           
+              <p class="site-description motion-element" itemprop="description">只是一个小开发</p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fcgeek" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2871687492" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">飛呈Jerry</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'fcgeek';
+      var disqus_identifier = 'nodejs-sdk/README.html';
+
+      var disqus_title = "";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
