@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,Swift,知识,卓同学的Swift面试题,面试题,map,flatmap," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -89,18 +89,17 @@
 
 
 
-<meta name="description" content="答答卓同学的Swift面试题   map返回的结果一一对应，必然和源数组一样多 1234var numbers = [1, 2, 3]let names = numbers.map &amp;#123;    String($0)&amp;#125; // [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]  flatmap返回的结果比较灵活，数量可以不确定，不返回映射元素的时候返回nil就行 1234var numbers =">
-<meta name="keywords" content="iOS,Swift,知识,卓同学的Swift面试题,面试题,map,flatmap">
+<meta name="description" content="老鼠试毒有15个瓶子，其中最多有一瓶有毒，现在有四只老鼠，喝了有毒的水之后，第二天就会死。如何在第二天就可以判断出哪个瓶子有毒 1234567891011121314151617C(4, 1)+C(4, 2)+C(4, 3)+C(4, 4)=151-15水.一-四老鼠一-1二-2三-3四-4一二-5一三-6一四-7二三-8二四-9三四10一二三-11一二四-12一三四-13二三四-14一二三四-1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【iOS知识】map 与 flatmap 的区别">
-<meta property="og:url" content="http://www.fcgeek.com/2017/04/05/iOS-Knowledge-map-flatmap-difference/index.html">
+<meta property="og:title" content="一些有趣的算法题">
+<meta property="og:url" content="http://www.fcgeek.com/2018/07/19/interesting-algorithm-question/index.html">
 <meta property="og:site_name" content="飛呈’Blog">
-<meta property="og:description" content="答答卓同学的Swift面试题   map返回的结果一一对应，必然和源数组一样多 1234var numbers = [1, 2, 3]let names = numbers.map &amp;#123;    String($0)&amp;#125; // [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]  flatmap返回的结果比较灵活，数量可以不确定，不返回映射元素的时候返回nil就行 1234var numbers =">
+<meta property="og:description" content="老鼠试毒有15个瓶子，其中最多有一瓶有毒，现在有四只老鼠，喝了有毒的水之后，第二天就会死。如何在第二天就可以判断出哪个瓶子有毒 1234567891011121314151617C(4, 1)+C(4, 2)+C(4, 3)+C(4, 4)=151-15水.一-四老鼠一-1二-2三-3四-4一二-5一三-6一四-7二三-8二四-9三四10一二三-11一二四-12一三四-13二三四-14一二三四-1">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-04-05T09:27:16.000Z">
+<meta property="og:updated_time" content="2018-07-19T09:58:48.839Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【iOS知识】map 与 flatmap 的区别">
-<meta name="twitter:description" content="答答卓同学的Swift面试题   map返回的结果一一对应，必然和源数组一样多 1234var numbers = [1, 2, 3]let names = numbers.map &amp;#123;    String($0)&amp;#125; // [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]  flatmap返回的结果比较灵活，数量可以不确定，不返回映射元素的时候返回nil就行 1234var numbers =">
+<meta name="twitter:title" content="一些有趣的算法题">
+<meta name="twitter:description" content="老鼠试毒有15个瓶子，其中最多有一瓶有毒，现在有四只老鼠，喝了有毒的水之后，第二天就会死。如何在第二天就可以判断出哪个瓶子有毒 1234567891011121314151617C(4, 1)+C(4, 2)+C(4, 3)+C(4, 4)=151-15水.一-四老鼠一-1二-2三-3四-4一二-5一三-6一四-7二三-8二四-9三四10一二三-11一二四-12一三四-13二三四-14一二三四-1">
 
 
 
@@ -128,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://www.fcgeek.com/2017/04/05/iOS-Knowledge-map-flatmap-difference/"/>
+  <link rel="canonical" href="http://www.fcgeek.com/2018/07/19/interesting-algorithm-question/"/>
 
 
 
 
 
-  <title> 【iOS知识】map 与 flatmap 的区别 | 飛呈’Blog </title>
+  <title> 一些有趣的算法题 | 飛呈’Blog </title>
   <script type="text/javascript">
     var host = "fcgeek.com";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
@@ -268,7 +267,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.fcgeek.com/2017/04/05/iOS-Knowledge-map-flatmap-difference/">
+    <link itemprop="mainEntityOfPage" href="http://www.fcgeek.com/2018/07/19/interesting-algorithm-question/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="飛呈Jerry">
@@ -289,7 +288,7 @@
             
             
               
-                【iOS知识】map 与 flatmap 的区别
+                一些有趣的算法题
               
             
           </h2>
@@ -304,8 +303,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-05T11:20:59+08:00">
-                2017-04-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-19T10:14:56+08:00">
+                2018-07-19
               </time>
             
 
@@ -327,8 +326,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/知识总结/" itemprop="url" rel="index">
-                    <span itemprop="name">知识总结</span>
+                  <a href="/categories/Develop/" itemprop="url" rel="index">
+                    <span itemprop="name">Develop</span>
                   </a>
                 </span>
 
@@ -345,8 +344,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/05/iOS-Knowledge-map-flatmap-difference/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/04/05/iOS-Knowledge-map-flatmap-difference/" itemprop="commentCount"></span>
+                <a href="/2018/07/19/interesting-algorithm-question/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/07/19/interesting-algorithm-question/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -372,16 +371,20 @@
       
 
       
-        <blockquote>
-<a href="/2017/03/27/Zhuo-Interview-Knowledge/" title="答答卓同学的Swift面试题">答答卓同学的Swift面试题</a>
-</blockquote>
-<ul>
-<li><p><strong>map</strong><br>返回的结果一一对应，必然和源数组一样多</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> names = numbers.<span class="built_in">map</span> &#123;</span><br><span class="line">    <span class="type">String</span>($<span class="number">0</span>)</span><br><span class="line">&#125; <span class="comment">// ["1", "2", "3"]</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>flatmap</strong><br>返回的结果比较灵活，数量可以不确定，不返回映射元素的时候返回<code>nil</code>就行</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> names = numbers.flatMap &#123;</span><br><span class="line">    $<span class="number">0</span> &gt; <span class="number">1</span> ? <span class="type">String</span>($<span class="number">0</span>) : <span class="literal">nil</span></span><br><span class="line">&#125; <span class="comment">// ["2", "3"]</span></span><br></pre></td></tr></table></figure></li>
-</ul>
+        <h2 id="老鼠试毒"><a href="#老鼠试毒" class="headerlink" title="老鼠试毒"></a>老鼠试毒</h2><p>有15个瓶子，其中最多有一瓶有毒，现在有四只老鼠，喝了有毒的水之后，第二天就会死。如何在第二天就可以判断出哪个瓶子有毒<br><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">C(4, 1)+C(4, 2)+C(4, 3)+C(4, 4)=15</span><br><span class="line">1-15水.一-四老鼠</span><br><span class="line">一-1</span><br><span class="line">二-2</span><br><span class="line">三-3</span><br><span class="line">四-4</span><br><span class="line">一二-5</span><br><span class="line">一三-6</span><br><span class="line">一四-7</span><br><span class="line">二三-8</span><br><span class="line">二四-9</span><br><span class="line">三四10</span><br><span class="line">一二三-11</span><br><span class="line">一二四-12</span><br><span class="line">一三四-13</span><br><span class="line">二三四-14</span><br><span class="line">一二三四-15</span><br></pre></td></tr></table></figure>
+
+</div></div></p>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>算法-动态规划 Dynamic Programming - 记住已经解决过的子问题的解<br><a href="https://blog.csdn.net/u013309870/article/details/75193592" target="_blank" rel="noopener">https://blog.csdn.net/u013309870/article/details/75193592</a></p>
+<h4 id="最少硬币"><a href="#最少硬币" class="headerlink" title="最少硬币"></a>最少硬币</h4><p>你有1元、5元、7元三种硬币，求一种方法，用最少的硬币凑出m元；（m∈[100, 1000]）<br><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getOptimalCoin</span><span class="params">(money)</span>:</span></span><br><span class="line">    coins = (<span class="number">1</span>, <span class="number">5</span>, <span class="number">7</span>)</span><br><span class="line">    coinsNum = <span class="number">0</span></span><br><span class="line">    submoney = money</span><br><span class="line">    <span class="keyword">for</span> coin <span class="keyword">in</span> reversed(coins):</span><br><span class="line">        coinNum = submoney // coin</span><br><span class="line">        coinsNum += coinNum</span><br><span class="line">        <span class="keyword">if</span> submoney &gt;= coinNum * coin:</span><br><span class="line">            submoney = submoney - coinNum * coin</span><br><span class="line">        <span class="keyword">if</span> submoney == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> coinsNum</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(getOptimalCoin(<span class="number">112</span>))</span><br></pre></td></tr></table></figure>
+
+</div></div></p>
+<h4 id="国王和金矿"><a href="#国王和金矿" class="headerlink" title="国王和金矿"></a>国王和金矿</h4><p>有一个国家发现了5座金矿，每座金矿的黄金储量不同，需要参与挖掘的工人数也不同，而工人的总数是1000人。要求用程序求解出，要想得到尽可能多的黄金，应该选择挖取哪几座金矿？</p>
+<h4 id="买书"><a href="#买书" class="headerlink" title="买书"></a>买书</h4><p>有一书店引进了一套书，共有3卷，每卷书定价是60元，书店为了搞促销，推出一个活动，活动如下：</p>
+<p>如果单独购买其中一卷，那么可以打9.5折。<br>如果同时购买两卷不同的，那么可以打9折。<br>如果同时购买三卷不同的，那么可以打8.5折。</p>
+<p>如果小明希望购买第1卷x本，第2卷y本，第3卷z本，那么至少需要多少钱呢？（x、y、z为三个已知整数）。</p>
+<p>当然，这道题完全可以不用动态规划来解，但是现在我们是要学习动态规划，因此请想想如何用动态规划来做？</p>
 
       
     </div>
@@ -403,24 +406,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
-          
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
-          
-            <a href="/tags/知识/" rel="tag"># 知识</a>
-          
-            <a href="/tags/卓同学的Swift面试题/" rel="tag"># 卓同学的Swift面试题</a>
-          
-            <a href="/tags/面试题/" rel="tag"># 面试题</a>
-          
-            <a href="/tags/map/" rel="tag"># map</a>
-          
-            <a href="/tags/flatmap/" rel="tag"># flatmap</a>
-          
-        </div>
-      
 
       
         
@@ -430,8 +415,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/05/iOS-Knowledge-map-filter-reduce/" rel="next" title="【iOS知识】map、filter、reduce 的作用">
-                <i class="fa fa-chevron-left"></i> 【iOS知识】map、filter、reduce 的作用
+              <a href="/2018/07/17/MyMacOSInit/" rel="next" title="MacOS High Sierra 重装后开发环境配置，及软件安装">
+                <i class="fa fa-chevron-left"></i> MacOS High Sierra 重装后开发环境配置，及软件安装
               </a>
             
           </div>
@@ -439,10 +424,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/05/iOS-Knowledge-min-function/" rel="prev" title="【iOS知识】实现一个 min 函数，返回两个元素较小的元素">
-                【iOS知识】实现一个 min 函数，返回两个元素较小的元素 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -496,8 +477,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/header.png"
@@ -582,6 +572,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#老鼠试毒"><span class="nav-number">1.</span> <span class="nav-text">老鼠试毒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划"><span class="nav-number">2.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最少硬币"><span class="nav-number">2.0.1.</span> <span class="nav-text">最少硬币</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#国王和金矿"><span class="nav-number">2.0.2.</span> <span class="nav-text">国王和金矿</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#买书"><span class="nav-number">2.0.3.</span> <span class="nav-text">买书</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -706,9 +712,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'fcgeek';
-      var disqus_identifier = '2017/04/05/iOS-Knowledge-map-flatmap-difference/';
+      var disqus_identifier = '2018/07/19/interesting-algorithm-question/';
 
-      var disqus_title = "【iOS知识】map 与 flatmap 的区别";
+      var disqus_title = "一些有趣的算法题";
 
 
       function run_disqus_script(disqus_script) {
