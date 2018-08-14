@@ -1,0 +1,837 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Swift,JavaScript," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="飛呈’Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="想直接看使用方法请 点击前往  在项目开发中遇到一个需求，调用JavaScript提供的方法来解析HTML，已获得原网页的关键信息。这么做有两个好处：  js文件从服务端获取，这样就能够紧跟原网站相关的变化来更改解析方法（APP上架和用户更新毕竟有时间周期在那） iOS和Android通用一套，方便维护  这么做的缺点也很明显：  调试不方便，有时候甚至需要三方配合调试；（iOS + Andro">
+<meta name="keywords" content="iOS,Swift,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何优雅的使用Swift和JavaScript交互">
+<meta property="og:url" content="http://www.fcgeek.com/2018/07/25/graceful-swift-javascript-interactive/index.html">
+<meta property="og:site_name" content="飛呈’Blog">
+<meta property="og:description" content="想直接看使用方法请 点击前往  在项目开发中遇到一个需求，调用JavaScript提供的方法来解析HTML，已获得原网页的关键信息。这么做有两个好处：  js文件从服务端获取，这样就能够紧跟原网站相关的变化来更改解析方法（APP上架和用户更新毕竟有时间周期在那） iOS和Android通用一套，方便维护  这么做的缺点也很明显：  调试不方便，有时候甚至需要三方配合调试；（iOS + Andro">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://pbydfsee0.bkt.clouddn.com/graceful-swift-javascript-interactive/result1.png">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*YQ_feGFxWvG8TgnpPn_z_w.png">
+<meta property="og:updated_time" content="2018-08-14T08:42:35.128Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何优雅的使用Swift和JavaScript交互">
+<meta name="twitter:description" content="想直接看使用方法请 点击前往  在项目开发中遇到一个需求，调用JavaScript提供的方法来解析HTML，已获得原网页的关键信息。这么做有两个好处：  js文件从服务端获取，这样就能够紧跟原网站相关的变化来更改解析方法（APP上架和用户更新毕竟有时间周期在那） iOS和Android通用一套，方便维护  这么做的缺点也很明显：  调试不方便，有时候甚至需要三方配合调试；（iOS + Andro">
+<meta name="twitter:image" content="http://pbydfsee0.bkt.clouddn.com/graceful-swift-javascript-interactive/result1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.fcgeek.com/2018/07/25/graceful-swift-javascript-interactive/"/>
+
+
+
+
+
+  <title> 如何优雅的使用Swift和JavaScript交互 | 飛呈’Blog </title>
+  <script type="text/javascript">
+    var host = "fcgeek.com";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+  </script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">飛呈’Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.fcgeek.com/2018/07/25/graceful-swift-javascript-interactive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="飛呈Jerry">
+      <meta itemprop="description" content="一个小开发人员">
+      <meta itemprop="image" content="/images/header.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飛呈’Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何优雅的使用Swift和JavaScript交互
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-25T11:39:57+08:00">
+                2018-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS-Develop/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS Develop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/25/graceful-swift-javascript-interactive/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/07/25/graceful-swift-javascript-interactive/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>想直接看使用方法请 <a href="#use">点击前往</a></p>
+</blockquote>
+<p>在项目开发中遇到一个需求，调用<code>JavaScript</code>提供的方法来解析HTML，已获得原网页的关键信息。这么做有两个好处：</p>
+<ul>
+<li>js文件从服务端获取，这样就能够紧跟原网站相关的变化来更改解析方法（APP上架和用户更新毕竟有时间周期在那）</li>
+<li>iOS和Android通用一套，方便维护</li>
+</ul>
+<p>这么做的缺点也很明显：</p>
+<ul>
+<li>调试不方便，有时候甚至需要三方配合调试；（iOS + Android + JavaScript）</li>
+<li>性能，iOS还好，使用<code>JSContext</code>没有肉眼可察觉的差异；Android需要引入一个三方库，包体积直接大了好几M</li>
+</ul>
+<p>开始使用的全世界都在用的<code>jsContext.evaluateScript</code> 方法来调用js方法，似乎并没有什么问题。<br>然而，在某一天突然说一个商品解析不出来，最后查出来是一个特殊字符串导致方法调用中断。<br>调用js方法 function(`html`) 解析，其中html串里面包含了 ` 字符，导致执行的串变成了 function(`xxxx` 和 `)，方法调用异常。</p>
+<p>这就尴尬了，谁知道哪个调皮的家伙会不会往代码里面加颜文字表情包呢，如果有办法把js方法钩出来像原生方法一样调用会不会很好呢？于是就找到了下面的操作。<br>除了我上面的需求，其实还可以做更多的事情，网上有很多现成的JS轮子，用了这个方法就可以更优雅的使用JS的轮子了，复制粘贴方法名字符串真的很难受。</p>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法<span id="use"></span></h1><p>假设你 JSContext 已经创建好，并且执行了需要使用的方法。使用方法：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> getGoodsFn = context.objectForKeyedSubscript(<span class="string">"getGoods"</span>)</span><br><span class="line"><span class="keyword">let</span> html = <span class="string">"网页源码"</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> goodsJson = createFakeContactFn?.call(withArguments: [html]).<span class="built_in">toString</span> &#123;</span><br><span class="line">    <span class="comment">//解析 goodsJson</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="参考翻译"><a href="#参考翻译" class="headerlink" title="参考翻译"></a>参考翻译</h1><blockquote>
+<p>在介绍使用方法之前先说说基本使用到的元素<br>尝试翻译提升自己的英语能力，很多翻译很憋足，英文能力好的直接阅读原文吧。<br>参考翻译 <a href="https://medium.com/swift-programming/from-swift-to-javascript-and-back-fd1f6a7a9f46" target="_blank" rel="noopener">https://medium.com/swift-programming/from-swift-to-javascript-and-back-fd1f6a7a9f46</a></p>
+</blockquote>
+<h2 id="JSVirtualMachine"><a href="#JSVirtualMachine" class="headerlink" title="JSVirtualMachine"></a>JSVirtualMachine</h2><blockquote>
+<p>&lt;JavaScriptCore/JSVirtualMachine.h&gt; 中的注释<br>@interface<br>@discussion An instance of JSVirtualMachine represents a single JavaScript “object space”<br> or set of execution resources. Thread safety is supported by locking the<br> virtual machine, with concurrent JavaScript execution supported by allocating<br> separate instances of JSVirtualMachine.</p>
+</blockquote>
+<p>看名字你应该能够猜到它大概是干什么的了，它是一个包含了<code>JavaScript</code>代码执行环境的虚拟机。它有两个值得注意的点：</p>
+<ol>
+<li>允许你在单独的线程中并发的运行你的代码；</li>
+<li><span id="the_second_purpose"></span>允许你清理 <code>Objective-C/Swift</code> 和 <code>JavaScript</code> 在桥接时分配的内存；</li>
+</ol>
+<p>所有的操作都是在 JSVirtualMachine 执行的。当你需要创建单独线程的时候，你还要创建一个新的 JSVirtualMachine 到这个线程里。因为 <a href="https://developer.apple.com/library/ios/documentation/Carbon/Reference/WebKit_JavaScriptCore_Ref/index.html#//apple_ref/doc/uid/TP40004754" target="_blank" rel="noopener">JavaScriptCore Api</a> 是线程安全的。所有的单独线程想要访问 JSVirtualMachine 里运行的代码都要等到初始化线程完成以后。如果你创建一个后台线程来执行 JSVirtualMachine 里的代码，那你不会得到你想要的结果。</p>
+<p>至于内存问题 <a href="#the_second_purpose">— 第二个点 —</a>，JSVirtualMachine 提供了一种在初始化完成对象后释放内存的机制。你可以把 Objective-C/Swift 对象导出到 JavaScript 时存储这个值，导致循环引用，这是个坏消息。在Native（Objective-C/Swift）对象中存储 JavaScript 值的时候，也会导致循环引用。由于 <code>JSValue</code> 会维护一个强引用，方便访问 Native 的基础 JavaScript 值，所以循环引用很可能会发生。类似的还有 <code>JSContxt</code> 会维护 Objective-C/Swift 传递给 JavaScript 的任何对象的强引用。因此，在你的对象用完后，还需要调用 JSVirtualMachine 的 <code>removeManagedReference:withOwner</code> 方法来清理一下内存。此外，当需要在 Native端有条件的存储一个 JSValue 时，应该使用 <code>JSManagedValue</code> 对象。在删除所有托管对象的引用后，JavaScript 垃圾回收器将仅清理对象。</p>
+<h2 id="JSContext"><a href="#JSContext" class="headerlink" title="JSContext"></a>JSContext</h2><p>JSContext 是 JavaScript 的执行环境，它和 web浏览器的窗口对象非常相似。你添加到这个 context 的所有内容都能够由同一个 context 里的任何对象访问到。这实际上是你控制 JavaScript 的变量、函数和对象范围的沙盒。你可以自己评估用 JavaScript 或 OC/Swift 写的脚本，在 JavaScript 环境中访问值，或者使用 JSContext 从 OC/Swift 向 JavaScript 发送值和对象。</p>
+<h2 id="JSValue"><a href="#JSValue" class="headerlink" title="JSValue"></a>JSValue</h2><p>JSValue 是底层 JavaScript 值的封装，它是 JavaScript 和 OC/Swift 之间共享数据的桥梁，JSValue 对它所属的 JSContext 有很强的参考价值。作为一个严谨的关键字，你需要牢记，如果你将 JSValue 存储在 Swift/OC 对象中，你就会造成一个循环引用。处理访问底层 JavaScript 对象外，还可以使用 JSValue 创建 JavaScript 对象，它们是 Swift/OC 的 Native 对象的封装。你还可以使用它们创建 OC/Swift 编写的函数。</p>
+<h2 id="JSManagedValue"><a href="#JSManagedValue" class="headerlink" title="JSManagedValue"></a>JSManagedValue</h2><p>JSManagedValue 是一个具有附加逻辑的 JSValue，允许 Native对象保存 JavaScript 的值而不会导致循环引用。内置的内存管理会在超出使用范围时自动释放对象，这类似于 ARC 在 OC 的工作方式。<br>JSManagedValue 只会会在两种情况下存活：</p>
+<ol>
+<li>它的值仍然是基于 JavaScript 对象中的一种；</li>
+<li>它使用了 addManagedReference:withOwner 方法添加到 JSVirtualMachine，并且没有使用 removeManagedReference:withOwner 方法删除；</li>
+</ol>
+<p>不然 JSManagedValue 就会被置为 nil，释放 JSValue，并且随时会在 JavaScript 端被垃圾回收器处理。</p>
+<h2 id="JSExport"><a href="#JSExport" class="headerlink" title="JSExport"></a>JSExport</h2><p>JSValue 是能表示所有的 JavaScript 类型的类，并可以转换为 OC/Swift 类型，还可以转换为 JavaScript 类型。但是 JSValue 无法再没有任何处理的情况下将 OC/Swift 对象转换为 JavaScript 对象。<code>JSExport</code> 协议提供了一种将 OC/Swift 类及其底层实例方法、类函数和属性转换为 JavaScript 对象的方法。</p>
+<p>默认情况下，在使用 JSValue 的时候，JavaScriptCore 会将 Swift/OC 类转换为 JavaScript 对象，但不会实现实例方法、类函数或属性，你必须在 JSExport 协议定义中选择要向 JavaScript 公开哪些内容。</p>
+<h2 id="JavaScriptCore-实践"><a href="#JavaScriptCore-实践" class="headerlink" title="JavaScriptCore 实践"></a>JavaScriptCore 实践</h2><p>好了，我们已经了解了 JavaScriptCore 库的基本类型，可以去使用了。</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>首先，我们要创建一个 JSVirtualMachine 以及一个 JSContext 实例。如果不打算用子线程来做并发操作，则可以跳过创建 JSVirtualMachine 并仅使用空构造函数创建 JSContext，它会给你创建 JSVirtualMachine。不然你就要创建保存 JSVirtualMachine 实例，并在创建 JSContext 实例时将其作为参数传递。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> JavaScriptCore</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> jsVM = <span class="type">JSVirtualMachine</span>()</span><br><span class="line"><span class="keyword">let</span> jsContext = <span class="type">JSContext</span>(virtualMachine: jsVM)</span><br></pre></td></tr></table></figure></p>
+<h3 id="调用函数以及执行脚本"><a href="#调用函数以及执行脚本" class="headerlink" title="调用函数以及执行脚本"></a>调用函数以及执行脚本</h3><p>所有这些酷的操作是基于使用了相同的 JavaScript 引擎支持 WebKit（适用于 iOS 和 macOS 的 Safari）。是时候提高一点了。我喜欢为 iOS 开发，但我也花了很多时间开发 Node.js和web。我经常使用 JavaScript 库来减少我自己要写的代码量，因为已经有很多比我更聪明的开发人员已经做了一些繁重的工作并创建了一些非常有用的东西。所以，我们下一步要了解如何在代码中引入并使用现有的 JavaScript 库。<br>对于我们的例子，我将使用 <a href="http://momentjs.com" target="_blank" rel="noopener">Moment.js</a> 来优化一些日期时间的操作。顺便说一下，我的示例是在 Playground 中编写的。如果要继续，请创建一个目标为 iOS 的新 playground 文件。需要引入 moment.js 库代码，我把它放在本地来使用。接下来，我把这个 <code>moment</code> 文件夹复制到我的 playground 的 Resources 文件夹里面。如果你遇到问题，可以参考作者使用 Playgrounds 的其他帖子。</p>
+<blockquote>
+<p>Moment.js <a href="http://momentjs.com" target="_blank" rel="noopener">http://momentjs.com</a></p>
+</blockquote>
+<p>我们接下来需要做的是找到 moment.js 的文件路径，将文件的内容复制到 String 里面，并将其注入到我们的 JSContext。代码如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//: Playground - noun: a place where people can play</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> JavaScriptCore</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> jsVM = <span class="type">JSVirtualMachine</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> jsContext = <span class="type">JSContext</span>(virtualMachine: jsVM),</span><br><span class="line">    <span class="keyword">let</span> momentPath = <span class="type">Bundle</span>.main.path(forResource: <span class="string">"moment.min"</span>, ofType: <span class="string">"js"</span>),</span><br><span class="line">    <span class="keyword">let</span> momentLib = <span class="keyword">try</span>? <span class="type">String</span>(contentsOfFile: momentPath) &#123;</span><br><span class="line">    jsContext.evaluateScript(momentLib)</span><br><span class="line">    <span class="keyword">let</span> moment = jsContext.evaluateScript(<span class="string">"moment().format()"</span>)</span><br><span class="line">    <span class="keyword">let</span> fn = jsContext.objectForKeyedSubscript(<span class="string">"moment"</span>)</span><br><span class="line">    <span class="keyword">let</span> fn1 = fn?.construct(withArguments: <span class="literal">nil</span>)</span><br><span class="line">    <span class="keyword">let</span> currentMin = fn1?.invokeMethod(<span class="string">"minute"</span>, withArguments: <span class="literal">nil</span>)</span><br><span class="line">    <span class="keyword">let</span> yesterday = fn1?.invokeMethod(<span class="string">"add"</span>, withArguments: [<span class="string">"-1"</span>, <span class="string">"days"</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://pbydfsee0.bkt.clouddn.com/graceful-swift-javascript-interactive/result1.png" alt="代码结果"><br>这里的重要内容是，如果调用 JSContext 的 evaluateScript() 方法，则执行的代码在我们的示例中将整个 moment.js 库添加为该特定的 JSContext 的全局对象。之后添加的任何脚本或 JavaScript 对象都可以使用所有的 moment.js 功能。<br>好吧，至少听起来不错。事实上，它取决于你注入 JSContext 的脚本内容。要使 moment.js 库起作用，我们需要通过另一个 evaluateScript 来调用它的构造函数和格式函数。一旦我们这样做了，我们就可以通过使用我们的 JSContext 的 objectForKeyedSubscript 方法获得 moment.js 库的引用，该方法将为我们提供初始化好的 moment.js 对象。参考上面的例子，了解如何调用方法或使用参数调用构造函数的示例，这些参数在幕后使 JavaScript 中正确的事情发生，这一切都非常强大。</p>
+<h3 id="扩展示例"><a href="#扩展示例" class="headerlink" title="扩展示例"></a>扩展示例</h3><p>向前移动，我想要提供一个更深入的示例，让你在考虑自己的代码中实际使用它的可能性。我们将创建一个小应用程序来显示联系人，我们只使用 JavaScript 库 Faker，而不是真正的联系人，每次执行时都会像我们提供新的联系人详细信息。我们的示例将允许我们再 Swift 中对关联对象进行建模，并在 Swift 中创建可以在 JavaScript 中执行的函数。我们还需要从 JavaScript 端获取具有“伪造”联系人详细信息的数据。最后，我们将使用 WKWebView 实例在 palyground 的视图中显示我们的联系人。</p>
+<p>第一步，先创建一个联系人对象和一个 JSExports 协议，该协议描述了我们想要暴露 JavaScript 的内容。之后，我们需要使用 JSContext 的 setObject 方法来使我们的联系人对象可以在 JavaScript 中访问。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@objc</span> <span class="class"><span class="keyword">protocol</span> <span class="title">ContactProtocol</span>: <span class="title">JSExport</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> firstName: <span class="type">String</span> &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> lastName: <span class="type">String</span> &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> email: <span class="type">String</span> &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> phone: <span class="type">String</span> &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@objc</span> <span class="class"><span class="keyword">class</span> <span class="title">Contact</span>: <span class="title">NSObject</span>, <span class="title">ContactProtocol</span> </span>&#123;</span><br><span class="line">    <span class="keyword">dynamic</span> <span class="keyword">var</span> firstName: <span class="type">String</span></span><br><span class="line">    <span class="keyword">dynamic</span> <span class="keyword">var</span> lastName: <span class="type">String</span></span><br><span class="line">    <span class="keyword">dynamic</span> <span class="keyword">var</span> email: <span class="type">String</span></span><br><span class="line">    <span class="keyword">dynamic</span> <span class="keyword">var</span> phone: <span class="type">String</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(fname: <span class="type">String</span>, lname: <span class="type">String</span>, email: <span class="type">String</span>, phone: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.firstName = fname</span><br><span class="line">        <span class="keyword">self</span>.lastName = lname</span><br><span class="line">        <span class="keyword">self</span>.email = email</span><br><span class="line">        <span class="keyword">self</span>.phone = phone</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> context = <span class="type">JSContext</span>()</span><br><span class="line">context?.setObject(<span class="type">Contact</span>.<span class="keyword">self</span>, forKeyedSubscript: <span class="string">"Contact"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>我们下一步创建一个可以在 JavaScript 中执行的 Swift 函数。 我们需要使用 @convention(block) 语法将我们的 Swift 闭包转换为一个 Block，该 block 将成为具有相同参数和返回值的 JavaScript 函数。我们再次调用 JSContext 的 setObject 方法将我们的方法传递给 JavaScript。但是，这次我们需要使用 unsafeBitCast 方法将 Swift 的闭包转换为 AnyObject 类型，以便 JavaScript 正确处理。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> createContactScript: <span class="meta">@convention</span>(block)(<span class="type">String</span>, <span class="type">String</span>, <span class="type">String</span>, <span class="type">String</span>) -&gt; <span class="type">Contact</span> = &#123; fname, lname, email, phone <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">return</span> <span class="type">Contact</span>.<span class="keyword">init</span>(fname: fname, lname: lname, email: email, phone: phone)</span><br><span class="line">&#125;</span><br><span class="line">context?.setObject(<span class="built_in">unsafeBitCast</span>(createContactScript, to: <span class="type">AnyObject</span>.<span class="keyword">self</span>), forKeyedSubscript: <span class="string">"CreateContact"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>我们下一步操作旨在想你展示如何从 JavaScript 调用和使用联系人对象以及我们的 createContact 函数。你将创建爱你一个 contact.js 脚本并将它放入 Playground 的 Resources 文件夹中。我们的脚本将有一个使用 Faker.js 库创建虚假联系人的函数。其目的是调用方法将新联系人添加到 playground 中的视图，并返回创建的联系人以供进一步检查。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">@objc protocol ContactDrawableExport: JSExport &#123;</span><br><span class="line">    var script: String &#123; get set &#125;</span><br><span class="line">    var firstName: String &#123; get set &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@objc class ContactDrawable: NSObject, ContactDrawableExport &#123;</span><br><span class="line">    var canvas: WKWebView!</span><br><span class="line">    var config: WKWebViewConfiguration!</span><br><span class="line">    var html: String!</span><br><span class="line"></span><br><span class="line">    var firstName: String = &quot;&quot;</span><br><span class="line">    var script: String = &quot;&quot;</span><br><span class="line"></span><br><span class="line">    init(fname: String, script: String) &#123;</span><br><span class="line">        self.firstName = fname</span><br><span class="line">        self.script = script</span><br><span class="line">        config = WKWebViewConfiguration()</span><br><span class="line">        let scriptContent = WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: false)</span><br><span class="line">        config.userContentController.addUserScript(scriptContent)</span><br><span class="line">        canvas = WKWebView(frame: CGRect.zero, configuration: config)</span><br><span class="line">        </span><br><span class="line">        guard let htmlPath = Bundle.main.path(forResource: &quot;page&quot;, ofType: &quot;html&quot;),</span><br><span class="line">            let html = try? String(contentsOfFile: htmlPath) else &#123;</span><br><span class="line">            return</span><br><span class="line">        &#125;</span><br><span class="line">        canvas.loadHTMLString(html, baseURL: nil)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let jsVM = JSVirtualMachine()</span><br><span class="line">let context = JSContext(virtualMachine: jsVM)</span><br><span class="line">context?.setObject(ContactDrawable.self, forKeyedSubscript: &quot;ContactDrawable&quot; as NSString)</span><br><span class="line"></span><br><span class="line">let mainView = UIView(frame: CGRect.init(x: 0, y: 0, width: 200, height: 200))</span><br><span class="line">let addToViewScript: @convention(block) (JSValue) -&gt; Void = &#123; value in</span><br><span class="line">    let drawableValue: JSManagedValue = JSManagedValue(value: value)</span><br><span class="line">    let dict = drawableValue.value.toObject() as? [String: String]</span><br><span class="line">    let drawable = ContactDrawable(fname: dict?[&quot;firstName&quot;] ?? &quot;unknown&quot;, script: dict?[&quot;script&quot;] ?? &quot;unknown&quot;)</span><br><span class="line">    drawable.canvas.frame = mainView.bounds</span><br><span class="line">    context?.virtualMachine.addManagedReference(drawableValue, withOwner: mainView)</span><br><span class="line">    mainView.addSubview(drawable.canvas)</span><br><span class="line">    </span><br><span class="line">    PlaygroundPage.current.liveView = mainView</span><br><span class="line">    context?.virtualMachine.removeManagedReference(drawableValue, withOwner: mainView)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">context?.setObject(unsafeBitCast(addToViewScript, to: AnyObject.self), forKeyedSubscript: &quot;addToView&quot; as NSString)</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码为我们想要向 JavaScript 公开的另一个对象创建了一个 JSExports 协议和类。我们还将这个新类添加到 JSContext 中，以便可以通过 JavaScript 访问它。另外，我们创建了 Swift 方法，将新的联系对象添加到我们可以在 Playground 中看到的视图中。<br>接下来，我们需要将 Faker.js 库添加到 JavaScript 环境中。我们遵循用于添加 Moment.js 的相同模式。我们还将 contact.js 文件添加到我们的环境中，该文件将 createFakeContact() 方法添加到我们的全局范围。然后，我们在 Native 端获得对 createFakeContact() 方法的引用并执行它。我发现在 JavaScript 中发生的事情与 Swift 中发生的事情有很多来回，但坦白说就是这一点。我希望你看到你可以很容易地来回传递对象并从任何一方执行方法。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Injecting the Faker.js libary into JSContext</span></span><br><span class="line"> <span class="keyword">guard</span> <span class="keyword">let</span> context = <span class="type">UIWebView</span>().value(forKeyPath: <span class="string">"documentView.webView.mainFrame.javaScriptContext"</span>) <span class="keyword">as</span>? <span class="type">JSContext</span>,</span><br><span class="line">        <span class="keyword">let</span> fakerPath = <span class="type">Bundle</span>.main.path(forResource: <span class="string">"faker.min"</span>, ofType: <span class="string">"js"</span>),</span><br><span class="line">        <span class="keyword">let</span> fakerLib = <span class="keyword">try</span>? <span class="type">String</span>(contentsOfFile: fakerPath),</span><br><span class="line">        <span class="keyword">let</span> contactPath = <span class="type">Bundle</span>.main.path(forResource: <span class="string">"contact"</span>, ofType: <span class="string">"js"</span>),</span><br><span class="line">        <span class="keyword">let</span> contactLib = <span class="keyword">try</span>? <span class="type">String</span>(contentsOfFile: contactPath) <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    <span class="keyword">let</span> logFunction : <span class="meta">@convention</span>(block) (<span class="type">String</span>) -&gt; <span class="type">Void</span> = &#123; (msg: <span class="type">String</span>) <span class="keyword">in</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"console: <span class="subst">\(msg)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    context.objectForKeyedSubscript(<span class="string">"console"</span>).setObject(<span class="built_in">unsafeBitCast</span>(logFunction, to: <span class="type">AnyObject</span>.<span class="keyword">self</span>),</span><br><span class="line">                                                            forKeyedSubscript: <span class="string">"log"</span> <span class="keyword">as</span> <span class="type">NSCopying</span> &amp; <span class="type">NSObjectProtocol</span>)</span><br><span class="line">    context.setObject(<span class="type">ContactDrawable</span>.<span class="keyword">self</span>, forKeyedSubscript: <span class="string">"ContactDrawable"</span> <span class="keyword">as</span> (<span class="type">NSCopying</span> &amp; <span class="type">NSObjectProtocol</span>))</span><br><span class="line">    context.setObject(<span class="type">Contact</span>.<span class="keyword">self</span>, forKeyedSubscript: <span class="string">"Contact"</span> <span class="keyword">as</span> (<span class="type">NSCopying</span> &amp; <span class="type">NSObjectProtocol</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> mainView = <span class="type">UIView</span>(frame: <span class="type">CGRect</span>.<span class="keyword">init</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">200</span>, height: <span class="number">200</span>))</span><br><span class="line">    <span class="keyword">let</span> addToViewScript: <span class="meta">@convention</span>(block) (<span class="type">JSValue</span>) -&gt; <span class="type">Void</span> = &#123; value <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">let</span> drawableValue: <span class="type">JSManagedValue</span> = <span class="type">JSManagedValue</span>(value: value)</span><br><span class="line">        <span class="keyword">let</span> dict = drawableValue.value.toObject() <span class="keyword">as</span>? [<span class="type">String</span>: <span class="type">String</span>]</span><br><span class="line">        <span class="keyword">let</span> drawable = <span class="type">ContactDrawable</span>(fname: dict?[<span class="string">"firstName"</span>] ?? <span class="string">"unknown"</span>, script: dict?[<span class="string">"script"</span>] ?? <span class="string">"unknown"</span>)</span><br><span class="line">        drawable.canvas.frame = mainView.bounds</span><br><span class="line">        context.virtualMachine.addManagedReference(drawableValue, withOwner: mainView)</span><br><span class="line">        mainView.addSubview(drawable.canvas)</span><br><span class="line"></span><br><span class="line">        <span class="type">PlaygroundPage</span>.current.liveView = mainView</span><br><span class="line">        context.virtualMachine.removeManagedReference(drawableValue, withOwner: mainView)</span><br><span class="line">    &#125;</span><br><span class="line">    context.setObject(<span class="built_in">unsafeBitCast</span>(createContactScript, to: <span class="type">AnyObject</span>.<span class="keyword">self</span>), forKeyedSubscript: <span class="string">"createContact"</span> <span class="keyword">as</span> (<span class="type">NSCopying</span> &amp; <span class="type">NSObjectProtocol</span>))</span><br><span class="line">    context.setObject(<span class="built_in">unsafeBitCast</span>(addToViewScript, to: <span class="type">AnyObject</span>.<span class="keyword">self</span>), forKeyedSubscript: <span class="string">"addToView"</span> <span class="keyword">as</span> (<span class="type">NSCopying</span> &amp; <span class="type">NSObjectProtocol</span>))</span><br><span class="line">    context.evaluateScript(fakerLib)</span><br><span class="line">    context.evaluateScript(contactLib)</span><br><span class="line">    <span class="keyword">let</span> createFakeContactFn = context.objectForKeyedSubscript(<span class="string">"createFakeContact"</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> contact = createFakeContactFn?.call(withArguments: []).toObject() <span class="keyword">as</span>? <span class="type">Contact</span> &#123;</span><br><span class="line">        contact.firstName</span><br><span class="line">        contact.lastName</span><br><span class="line">        contact.email</span><br><span class="line">        contact.phone</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> createFakeContact = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> firstName = faker.name.firstName();</span><br><span class="line">    <span class="keyword">var</span> lastName = faker.name.lastName();</span><br><span class="line">    <span class="keyword">var</span> email = faker.internet.email(firstName, lastName);</span><br><span class="line">    <span class="keyword">var</span> phone = faker.phone.phoneNumber();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> contact = createContact(firstName, lastName, email, phone);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> script = <span class="string">"$('ul.contact').append('&lt;li&gt;FirstName: "</span> + firstName + <span class="string">"&lt;/li&gt;');"</span>;</span><br><span class="line">    script += <span class="string">"$('ul.contact').append('&lt;li&gt;LastName: "</span> + lastName + <span class="string">"&lt;/li&gt;');"</span>;</span><br><span class="line">    script += <span class="string">"$('ul.contact').append('&lt;li&gt;Email: "</span> + email + <span class="string">"&lt;/li&gt;');"</span>;</span><br><span class="line">    script += <span class="string">"$('ul.contact').append('&lt;li&gt;Phone: "</span> + phone + <span class="string">"&lt;/li&gt;');"</span>;</span><br><span class="line">    <span class="comment">// 这段执行失败，JavaScriptCore 调试无能...</span></span><br><span class="line">    <span class="comment">// var drawable = new ContactDrawable();</span></span><br><span class="line">    <span class="comment">// drawable.firstName = firstName;</span></span><br><span class="line">    <span class="comment">// drawable.script = script;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// addToView(drawable);</span></span><br><span class="line">    <span class="keyword">return</span> contact;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>我们还需要做最后几件事是添加 page.html 文件，该文件由我们的 ContactDrawable 类中的 WKWebView 加载。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=l, maximum-seale=l, minimum-scale=l, user-scalable=no"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Bootstrap 101 Template<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Bootstrap --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"httos://maxcdn.bootstraDcdn.eom/bootstrao/3.3.6/css/bootstrap.min.css"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">integrity</span>=<span class="string">"sha384-lq8mTJ0ASx8jlAu+a5WDVnPi2lkFfv^EAa8hDDdjZlpLegxh_jVMElfgjWPGmkzs7"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- WARNING: Respond.js doesn't work if you view the page via file:// --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- [if lt IE 9]&gt;</span></span><br><span class="line"><span class="comment">    &lt;script srcg"httos://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.ls"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="comment">    &lt;script srcg"httos://oss.maxcdn.com/resD〇nd/1.4.2/resD〇nd.min.js"&gt;&lt;/scriot&gt;</span></span><br><span class="line"><span class="comment">&lt;![endif]--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container-fluid"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">clas</span>=<span class="string">"col-sm-4"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"contact"</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- jQuery (necessary for Bootstrap’s JavaScript plugins) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https; //ajax.googleapis.com/aiax/libs/jquery/1.11.3/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Include all compiled plugins (below), or include individual files as needed --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://maxedn.bootstrapcdn.com/bootstrap/3.3.6/is/bootstrap.min.is"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">integrity</span>=<span class="string">"sha384-lq8mTJ0ASx8jlAu+a5WDVnPi2lkFfv^EAa8hDDdjZlpLegxh_jVMElfgjWPGmkzs7"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>为了显示我们的联系人，我创建一个 UIView 并将分配给 PlaygroundPage.current.liveView。执行 playground 会显示一个包含水机创建的 faker 联系人详细信息信息。<br><img src="https://cdn-images-1.medium.com/max/1600/1*YQ_feGFxWvG8TgnpPn_z_w.png" alt="Contact Details displayed in Playground’s Live View"></p>
+<h3 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h3><p>这个 Playground 显示一个视图，其中包含每次运行时更改的联系人详细信息。通过一点想象力，你可以调整示例以制作可以从 JavaScript 创建和控制 nativeUI 对象。另一种可能性是使用从服务器下载的脚本扩展应用程序，以实例化 Swift 类执行 native 任务。</p>
+<p>按字面翻译完了，我感到十分蛋疼。自己调试了一下里面的所有代码，如果js库正常则十分好用，如果js库对 JS 环境有要求的话，一直失败，调试无能，我觉得还是寻找其他库或原生实现会更好。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/19/interesting-algorithm-question/" rel="next" title="一些有趣的算法题">
+                <i class="fa fa-chevron-left"></i> 一些有趣的算法题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/header.png"
+               alt="飛呈Jerry" />
+          <p class="site-author-name" itemprop="name">飛呈Jerry</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个小开发人员</p>
+           
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fcgeek" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2871687492" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用方法"><span class="nav-number">1.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考翻译"><span class="nav-number">2.</span> <span class="nav-text">参考翻译</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSVirtualMachine"><span class="nav-number">2.1.</span> <span class="nav-text">JSVirtualMachine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSContext"><span class="nav-number">2.2.</span> <span class="nav-text">JSContext</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSValue"><span class="nav-number">2.3.</span> <span class="nav-text">JSValue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSManagedValue"><span class="nav-number">2.4.</span> <span class="nav-text">JSManagedValue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSExport"><span class="nav-number">2.5.</span> <span class="nav-text">JSExport</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScriptCore-实践"><span class="nav-number">2.6.</span> <span class="nav-text">JavaScriptCore 实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">2.6.1.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用函数以及执行脚本"><span class="nav-number">2.6.2.</span> <span class="nav-text">调用函数以及执行脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展示例"><span class="nav-number">2.6.3.</span> <span class="nav-text">扩展示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结尾"><span class="nav-number">2.6.4.</span> <span class="nav-text">结尾</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">飛呈Jerry</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'fcgeek';
+      var disqus_identifier = '2018/07/25/graceful-swift-javascript-interactive/';
+
+      var disqus_title = "如何优雅的使用Swift和JavaScript交互";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

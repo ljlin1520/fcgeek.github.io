@@ -2932,8 +2932,8 @@ hr {
   cursor: pointer;
 }
 .close:after {
-  content: "查看详情▼";
+  content: "▼";
 }
 .open:after {
-  content: "收起▲";
+  content: "▲";
 }

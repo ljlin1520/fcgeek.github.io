@@ -89,17 +89,17 @@
 
 
 
-<meta name="description" content="老鼠试毒有15个瓶子，其中最多有一瓶有毒，现在有四只老鼠，喝了有毒的水之后，第二天就会死。如何在第二天就可以判断出哪个瓶子有毒 1234567891011121314151617C(4, 1)+C(4, 2)+C(4, 3)+C(4, 4)=151-15水.一-四老鼠一-1二-2三-3四-4一二-5一三-6一四-7二三-8二四-9三四10一二三-11一二四-12一三四-13二三四-14一二三四-1">
+<meta name="description" content="老鼠试毒有15个瓶子，其中最多有一瓶有毒，现在有四只老鼠，喝了有毒的水之后，第二天就会死。如何在第二天就可以判断出哪个瓶子有毒参考答案 1234567891011121314151617C(4, 1)+C(4, 2)+C(4, 3)+C(4, 4)=151-15水.一-四老鼠一-1二-2三-3四-4一二-5一三-6一四-7二三-8二四-9三四10一二三-11一二四-12一三四-13二三四-14一二">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些有趣的算法题">
 <meta property="og:url" content="http://www.fcgeek.com/2018/07/19/interesting-algorithm-question/index.html">
 <meta property="og:site_name" content="飛呈’Blog">
-<meta property="og:description" content="老鼠试毒有15个瓶子，其中最多有一瓶有毒，现在有四只老鼠，喝了有毒的水之后，第二天就会死。如何在第二天就可以判断出哪个瓶子有毒 1234567891011121314151617C(4, 1)+C(4, 2)+C(4, 3)+C(4, 4)=151-15水.一-四老鼠一-1二-2三-3四-4一二-5一三-6一四-7二三-8二四-9三四10一二三-11一二四-12一三四-13二三四-14一二三四-1">
+<meta property="og:description" content="老鼠试毒有15个瓶子，其中最多有一瓶有毒，现在有四只老鼠，喝了有毒的水之后，第二天就会死。如何在第二天就可以判断出哪个瓶子有毒参考答案 1234567891011121314151617C(4, 1)+C(4, 2)+C(4, 3)+C(4, 4)=151-15水.一-四老鼠一-1二-2三-3四-4一二-5一三-6一四-7二三-8二四-9三四10一二三-11一二四-12一三四-13二三四-14一二">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-19T09:58:48.839Z">
+<meta property="og:updated_time" content="2018-07-25T03:43:45.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些有趣的算法题">
-<meta name="twitter:description" content="老鼠试毒有15个瓶子，其中最多有一瓶有毒，现在有四只老鼠，喝了有毒的水之后，第二天就会死。如何在第二天就可以判断出哪个瓶子有毒 1234567891011121314151617C(4, 1)+C(4, 2)+C(4, 3)+C(4, 4)=151-15水.一-四老鼠一-1二-2三-3四-4一二-5一三-6一四-7二三-8二四-9三四10一二三-11一二四-12一三四-13二三四-14一二三四-1">
+<meta name="twitter:description" content="老鼠试毒有15个瓶子，其中最多有一瓶有毒，现在有四只老鼠，喝了有毒的水之后，第二天就会死。如何在第二天就可以判断出哪个瓶子有毒参考答案 1234567891011121314151617C(4, 1)+C(4, 2)+C(4, 3)+C(4, 4)=151-15水.一-四老鼠一-1二-2三-3四-4一二-5一三-6一四-7二三-8二四-9三四10一二三-11一二四-12一三四-13二三四-14一二">
 
 
 
@@ -271,7 +271,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="飛呈Jerry">
-      <meta itemprop="description" content="只是一个小开发">
+      <meta itemprop="description" content="一个小开发人员">
       <meta itemprop="image" content="/images/header.png">
     </span>
 
@@ -371,21 +371,37 @@
       
 
       
-        <h2 id="老鼠试毒"><a href="#老鼠试毒" class="headerlink" title="老鼠试毒"></a>老鼠试毒</h2><p>有15个瓶子，其中最多有一瓶有毒，现在有四只老鼠，喝了有毒的水之后，第二天就会死。如何在第二天就可以判断出哪个瓶子有毒<br><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+        <h2 id="老鼠试毒"><a href="#老鼠试毒" class="headerlink" title="老鼠试毒"></a>老鼠试毒</h2><p>有15个瓶子，其中最多有一瓶有毒，现在有四只老鼠，喝了有毒的水之后，第二天就会死。如何在第二天就可以判断出哪个瓶子有毒<br><div><div class="fold_hider"><div class="close hider_title">参考答案</div></div><div class="fold">
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">C(4, 1)+C(4, 2)+C(4, 3)+C(4, 4)=15</span><br><span class="line">1-15水.一-四老鼠</span><br><span class="line">一-1</span><br><span class="line">二-2</span><br><span class="line">三-3</span><br><span class="line">四-4</span><br><span class="line">一二-5</span><br><span class="line">一三-6</span><br><span class="line">一四-7</span><br><span class="line">二三-8</span><br><span class="line">二四-9</span><br><span class="line">三四10</span><br><span class="line">一二三-11</span><br><span class="line">一二四-12</span><br><span class="line">一三四-13</span><br><span class="line">二三四-14</span><br><span class="line">一二三四-15</span><br></pre></td></tr></table></figure>
 
 </div></div></p>
 <h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>算法-动态规划 Dynamic Programming - 记住已经解决过的子问题的解<br><a href="https://blog.csdn.net/u013309870/article/details/75193592" target="_blank" rel="noopener">https://blog.csdn.net/u013309870/article/details/75193592</a></p>
-<h4 id="最少硬币"><a href="#最少硬币" class="headerlink" title="最少硬币"></a>最少硬币</h4><p>你有1元、5元、7元三种硬币，求一种方法，用最少的硬币凑出m元；（m∈[100, 1000]）<br><div><div class="fold_hider"><div class="close hider_title"></div></div><div class="fold">
+<h4 id="最少硬币"><a href="#最少硬币" class="headerlink" title="最少硬币"></a>最少硬币</h4><p>你有1元、5元、7元三种硬币，求一种方法，用最少的硬币凑出m元；（m∈[100, 1000]）<br><div><div class="fold_hider"><div class="close hider_title">参考答案</div></div><div class="fold">
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getOptimalCoin</span><span class="params">(money)</span>:</span></span><br><span class="line">    coins = (<span class="number">1</span>, <span class="number">5</span>, <span class="number">7</span>)</span><br><span class="line">    coinsNum = <span class="number">0</span></span><br><span class="line">    submoney = money</span><br><span class="line">    <span class="keyword">for</span> coin <span class="keyword">in</span> reversed(coins):</span><br><span class="line">        coinNum = submoney // coin</span><br><span class="line">        coinsNum += coinNum</span><br><span class="line">        <span class="keyword">if</span> submoney &gt;= coinNum * coin:</span><br><span class="line">            submoney = submoney - coinNum * coin</span><br><span class="line">        <span class="keyword">if</span> submoney == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> coinsNum</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(getOptimalCoin(<span class="number">112</span>))</span><br></pre></td></tr></table></figure>
 
 </div></div></p>
-<h4 id="国王和金矿"><a href="#国王和金矿" class="headerlink" title="国王和金矿"></a>国王和金矿</h4><p>有一个国家发现了5座金矿，每座金矿的黄金储量不同，需要参与挖掘的工人数也不同，而工人的总数是1000人。要求用程序求解出，要想得到尽可能多的黄金，应该选择挖取哪几座金矿？</p>
+<h4 id="国王和金矿"><a href="#国王和金矿" class="headerlink" title="国王和金矿"></a>国王和金矿</h4><p>有一个国家发现了5座金矿，每座金矿的黄金储量不同，需要参与挖掘的工人数也不同，而工人的总数是10人。要求用程序求解出，要想得到尽可能多的黄金，应该选择挖取哪几座金矿？<br>五座金矿</p>
+<ol start="0">
+<li>500金/5人</li>
+<li>200金/3人</li>
+<li>300金/4人</li>
+<li>350金/3人</li>
+<li>400金/5人</li>
+</ol>
+<div><div class="fold_hider"><div class="close hider_title">参考答案</div></div><div class="fold">
+<p>TODO：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getOptimalCoin</span><span class="params">(money)</span>:</span></span><br><span class="line">    coins = (<span class="number">1</span>, <span class="number">5</span>, <span class="number">7</span>)</span><br><span class="line">    coinsNum = <span class="number">0</span></span><br><span class="line">    submoney = money</span><br><span class="line">    <span class="keyword">for</span> coin <span class="keyword">in</span> reversed(coins):</span><br><span class="line">        coinNum = submoney // coin</span><br><span class="line">        coinsNum += coinNum</span><br><span class="line">        <span class="keyword">if</span> submoney &gt;= coinNum * coin:</span><br><span class="line">            submoney = submoney - coinNum * coin</span><br><span class="line">        <span class="keyword">if</span> submoney == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> coinsNum</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(getOptimalCoin(<span class="number">112</span>))</span><br></pre></td></tr></table></figure></p>
+
+</div></div>
 <h4 id="买书"><a href="#买书" class="headerlink" title="买书"></a>买书</h4><p>有一书店引进了一套书，共有3卷，每卷书定价是60元，书店为了搞促销，推出一个活动，活动如下：</p>
 <p>如果单独购买其中一卷，那么可以打9.5折。<br>如果同时购买两卷不同的，那么可以打9折。<br>如果同时购买三卷不同的，那么可以打8.5折。</p>
 <p>如果小明希望购买第1卷x本，第2卷y本，第3卷z本，那么至少需要多少钱呢？（x、y、z为三个已知整数）。</p>
 <p>当然，这道题完全可以不用动态规划来解，但是现在我们是要学习动态规划，因此请想想如何用动态规划来做？</p>
+<div><div class="fold_hider"><div class="close hider_title">参考答案</div></div><div class="fold">
+<p>1、过程为一次一次的购买，每一次购买也许只买一本（这有三种方案），或者买两本（这也有三种方案），或者三本一起买（这有一种方案），最后直到买完所有需要的书。<br>2、最后一步我必然会在7种购买方案中选择一种，因此我要在7种购买方案中选择一个最佳情况。<br>3、子问题是，我选择了某个方案后，如何使得购买剩余的书能用最少的钱？并且这个选择不会使得剩余的书为负数。母问题和子问题都是给定三卷书的购买量，求最少需要用的钱，所以有“子问题重叠”，问题中三个购买量设置为参数，分别为i、j、k。<br>4、的确符合。<br>5、边界是一次购买就可以买完所有的书，处理方式请读者自己考虑。<br>6、每次选择最多有7种方案，并且不会同时实施其中多种，因此方案的选择互不影响，所以有“子问题独立”。<br>7、我可以用minMoney[j][k]来保存购买第1卷i本，第2卷j本，第3卷k本时所需的最少金钱。<br>8、共有x <em> y </em> z 个问题，每个问题面对7种选择，时间为：O( x <em> y </em> z <em> 7) =   O( x </em> y <em> z )。<br>9、用函数MinMoney(i,j,k)来表示购买第1卷i本，第2卷j本，第3卷k本时所需的最少金钱，那么有：<br>        MinMoney(i,j,k)=min(s1,s2,s3,s4,s5,s6,s7),其中s1,s2,s3,s4,s5,s6,s7分别为对应的7种方案使用的最少金钱：<br>        s1 = 60 </em> 0.95 + MinMoney(i-1,j,k)<br>        s2 = 60 <em> 0.95 + MinMoney(i,j-1,k)<br>        s3 = 60 </em> 0.95 + MinMoney(i,j,k-1)<br>        s4 = (60 + 60) <em> 0.9 + MinMoney(i-1,j-1,k)<br>        s5 = (60 + 60) </em> 0.9 + MinMoney(i-1,j,k-1)<br>        s6 = (60 + 60) <em> 0.9 + MinMoney(i-1,j,k-1)<br>        s7 = (60 + 60 + 60) </em> 0.85 + MinMoney(i-1,j-1,k-1)</p>
+<pre><code class="Python">
+</code></pre>
 
+</div></div>
       
     </div>
 
@@ -424,6 +440,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/25/graceful-swift-javascript-interactive/" rel="prev" title="如何优雅的使用Swift和JavaScript交互">
+                如何优雅的使用Swift和JavaScript交互 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -494,7 +514,7 @@
                alt="飛呈Jerry" />
           <p class="site-author-name" itemprop="name">飛呈Jerry</p>
            
-              <p class="site-description motion-element" itemprop="description">只是一个小开发</p>
+              <p class="site-description motion-element" itemprop="description">一个小开发人员</p>
            
         </div>
         <nav class="site-state motion-element">
@@ -502,7 +522,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -520,7 +540,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
