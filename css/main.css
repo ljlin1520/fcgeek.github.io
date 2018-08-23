@@ -706,9 +706,7 @@ pre .javascript .function {
   float: left;
 }
 .page-post-detail .post-body .group-picture-column {
-  float: none;
   margin-top: 10px;
-  width: auto !important;
 }
 .page-post-detail .post-body .group-picture-column img {
   margin: 0 auto;
