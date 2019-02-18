@@ -97,21 +97,21 @@
 <meta property="og:site_name" content="飛呈’Blog">
 <meta property="og:description" content="背景今天在处理Bugly上的崩溃信息时想拿到dSYM文件上传，结果用Xcode一直下载失败不了，Apple粑粑一直让去同意协议，同意了之后还是提示，只能另寻他法了。   The updated Apple Developer Program License Agreement needs to be reviewed. In order to update your existing apps a">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/tips.png">
-<meta property="og:image" content="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/organizer.png">
-<meta property="og:image" content="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/show_finder.png">
-<meta property="og:image" content="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/show_package.png">
-<meta property="og:image" content="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/dSYM1.png">
-<meta property="og:image" content="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/download_dSYM.png">
-<meta property="og:image" content="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/downloaded_dSYM.png">
-<meta property="og:image" content="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/active.png">
-<meta property="og:image" content="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/version.png">
-<meta property="og:image" content="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/download.png">
+<meta property="og:image" content="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/tips.png">
+<meta property="og:image" content="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/organizer.png">
+<meta property="og:image" content="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/show_finder.png">
+<meta property="og:image" content="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/show_package.png">
+<meta property="og:image" content="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/dSYM1.png">
+<meta property="og:image" content="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/download_dSYM.png">
+<meta property="og:image" content="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/downloaded_dSYM.png">
+<meta property="og:image" content="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/active.png">
+<meta property="og:image" content="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/version.png">
+<meta property="og:image" content="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/download.png">
 <meta property="og:updated_time" content="2018-07-17T07:26:17.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS】获取dSYM符号表方法总结">
 <meta name="twitter:description" content="背景今天在处理Bugly上的崩溃信息时想拿到dSYM文件上传，结果用Xcode一直下载失败不了，Apple粑粑一直让去同意协议，同意了之后还是提示，只能另寻他法了。   The updated Apple Developer Program License Agreement needs to be reviewed. In order to update your existing apps a">
-<meta name="twitter:image" content="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/tips.png">
+<meta name="twitter:image" content="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/tips.png">
 
 
 
@@ -387,32 +387,32 @@
 <blockquote>
 <p><strong> The updated Apple Developer Program License Agreement needs to be reviewed. In order to update your existing apps and submit new apps to the App Store, the user with the Legal role (Team Agent) must review and accept the updated agreement in their account on the developer website . </strong><br>The updated Apple Developer Program License Agreement needs to be reviewed. In order to update your existing apps and submit new apps to the App Store, the user with the Legal role (Team Agent) must review and accept the updated agreement in their account on the developer website .</p>
 </blockquote>
-<p><img src="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/tips.png" alt="提示"></p>
-<h1 id="获取dSYM方法"><a href="#获取dSYM方法" class="headerlink" title="获取dSYM方法"></a>获取dSYM方法</h1><h2 id="未开启bitcode功能"><a href="#未开启bitcode功能" class="headerlink" title="未开启bitcode功能"></a>未开启bitcode功能</h2><p><a href="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/organizer.png" target="_blank" rel="noopener">http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/organizer.png</a></p>
+<p><img src="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/tips.png" alt="提示"></p>
+<h1 id="获取dSYM方法"><a href="#获取dSYM方法" class="headerlink" title="获取dSYM方法"></a>获取dSYM方法</h1><h2 id="未开启bitcode功能"><a href="#未开启bitcode功能" class="headerlink" title="未开启bitcode功能"></a>未开启bitcode功能</h2><p><a href="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/organizer.png" target="_blank" rel="noopener">http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/organizer.png</a></p>
 <ol>
-<li><p>打开 <code>Xcode</code>（当前Version 8.2.1 (8C1002)），选择”Window——&gt;Organizer”<br><img src="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/organizer.png" alt="organizer"></p>
+<li><p>打开 <code>Xcode</code>（当前Version 8.2.1 (8C1002)），选择”Window——&gt;Organizer”<br><img src="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/organizer.png" alt="organizer"></p>
 </li>
-<li><p>选择对应版本的 Archive 包，”右键——&gt;Show in Finder”<br><img src="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/show_finder.png" alt="Finder"></p>
+<li><p>选择对应版本的 Archive 包，”右键——&gt;Show in Finder”<br><img src="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/show_finder.png" alt="Finder"></p>
 </li>
-<li><p>选择 Archives/<code>&#39;date&#39;</code>/ 文件夹下的”.xcarchive”文件，”右键——&gt;显示包内容”<br><img src="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/show_package.png" alt="package"></p>
+<li><p>选择 Archives/<code>&#39;date&#39;</code>/ 文件夹下的”.xcarchive”文件，”右键——&gt;显示包内容”<br><img src="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/show_package.png" alt="package"></p>
 </li>
-<li><p>找到dSYMs文件夹下的dSYM文件<br><img src="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/dSYM1.png" alt="dSYM"></p>
+<li><p>找到dSYMs文件夹下的dSYM文件<br><img src="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/dSYM1.png" alt="dSYM"></p>
 </li>
 </ol>
 <h2 id="开启bitcode功能"><a href="#开启bitcode功能" class="headerlink" title="开启bitcode功能"></a>开启bitcode功能</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><ol>
 <li>(<strong><em>同 <code>未开启bitcode功能</code> 1.</em></strong>)，打开 <code>Xcode</code>（当前Version 8.2.1 (8C1002)），选择”Window——&gt;Organizer”</li>
-<li><p>点击最右边<code>download dSYMs</code> 按钮<br><img src="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/download_dSYM.png" alt="download_dSYMs"></p>
+<li><p>点击最右边<code>download dSYMs</code> 按钮<br><img src="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/download_dSYM.png" alt="download_dSYMs"></p>
 </li>
-<li><p>(<strong><em>同 <code>未开启bitcode功能</code> 2.3.4操作</em></strong>)<br><img src="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/downloaded_dSYM.png" alt="download_dSYMs"></p>
+<li><p>(<strong><em>同 <code>未开启bitcode功能</code> 2.3.4操作</em></strong>)<br><img src="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/downloaded_dSYM.png" alt="download_dSYMs"></p>
 </li>
 </ol>
 <h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><ol>
 <li>进入 <a href="https://itunesconnect.apple.com/" target="_blank" rel="noopener"><code>itunesconnect</code></a> -&gt; <code>我的APP</code></li>
-<li><p>选择<code>活动</code>Tab<br><img src="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/active.png" alt="active"></p>
+<li><p>选择<code>活动</code>Tab<br><img src="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/active.png" alt="active"></p>
 </li>
-<li><p>选择需要的dSYM版本<br><img src="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/version.png" alt="version"></p>
+<li><p>选择需要的dSYM版本<br><img src="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/version.png" alt="version"></p>
 </li>
-<li><p>点击下载即可<br><img src="http://pbydfsee0.bkt.clouddn.com/iOS-Fetch-dSYM/download.png" alt="download"></p>
+<li><p>点击下载即可<br><img src="http://feicheng-blog.test.upcdn.net/iOS-Fetch-dSYM/download.png" alt="download"></p>
 </li>
 </ol>
 <h1 id="尾"><a href="#尾" class="headerlink" title="尾"></a>尾</h1><p>能够想到的就这么多了，有错误的地方欢迎指出，还有其他办法也麻烦跟我说说；<br><a href="/about"><code>联系我</code></a></p>
@@ -650,7 +650,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

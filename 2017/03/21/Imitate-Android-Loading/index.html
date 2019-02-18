@@ -98,7 +98,7 @@
 <meta property="og:description" content="代码 HorizontalLoadingView  效果图 缘由这个效果是低版本Android的一个加载效果，我们的Android小哥拿到了源码来使用；设计师看到不错，要求iOS也弄一下，用在Webview的加载时候，于是自己实现了一个。 思路问了一下我们Android小哥代码的实现，大概是一个可见横条内部四个圆不断的往外扩散, 形成的动画。 想想没必要完全照搬，太蛋疼了。于是在一个View中用">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://raw.githubusercontent.com/fcgeek/HorizontalLoadingView/master/loading.gif">
-<meta property="og:image" content="http://pbydfsee0.bkt.clouddn.com/Imitate-Android-Loading/pic1.png">
+<meta property="og:image" content="http://feicheng-blog.test.upcdn.net/Imitate-Android-Loading/pic1.png">
 <meta property="og:updated_time" content="2018-07-17T07:01:49.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【iOS-Swift】仿安卓加载彩虹条">
@@ -380,7 +380,7 @@
 </blockquote>
 <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://raw.githubusercontent.com/fcgeek/HorizontalLoadingView/master/loading.gif" alt="效果图"></p>
 <h1 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h1><p>这个效果是低版本Android的一个加载效果，我们的Android小哥拿到了源码来使用；<br>设计师看到不错，要求iOS也弄一下，用在Webview的加载时候，于是自己实现了一个。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>问了一下我们Android小哥代码的实现，大概是一个可见横条内部四个圆不断的往外扩散, 形成的动画。<br><img src="http://pbydfsee0.bkt.clouddn.com/Imitate-Android-Loading/pic1.png" alt="示意图1"></p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>问了一下我们Android小哥代码的实现，大概是一个可见横条内部四个圆不断的往外扩散, 形成的动画。<br><img src="http://feicheng-blog.test.upcdn.net/Imitate-Android-Loading/pic1.png" alt="示意图1"></p>
 <p>想想没必要完全照搬，太蛋疼了。于是在一个View中用四个子layer来做动画，从中间点往两边扩展就好了。</p>
 <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//MARK: UIWebViewDelegate</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebViewController</span>: <span class="title">UIViewController</span>, <span class="title">UIWebViewDelegate</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        <span class="keyword">let</span> horizontalLoadingView = <span class="type">HorizontalLoadingView</span>()</span><br><span class="line">        horizontalLoadingView.frame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, w: <span class="number">200</span>, h: <span class="number">2</span>)</span><br><span class="line">        view.addSubview(horizontalLoadingView)        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">webViewDidFinishLoad</span><span class="params">(<span class="number">_</span> webView: UIWebView)</span></span> &#123;        </span><br><span class="line">        horizontalLoadingView.stop()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">webViewDidStartLoad</span><span class="params">(<span class="number">_</span> webView: UIWebView)</span></span> &#123;        </span><br><span class="line">        horizontalLoadingView.start()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
@@ -616,7 +616,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
